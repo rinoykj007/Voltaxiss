@@ -19,8 +19,26 @@ const app = express();
 connectDB();
 
 // Middleware
+// Allow CORS for production frontend and all Vercel preview URLs
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:8080',
+  'https://voltaxissfnd.vercel.app',
+  process.env.CLIENT_URL
+].filter(Boolean);
+
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps, Postman, etc.)
+    if (!origin) return callback(null, true);
+
+    // Allow if origin is in allowed list OR is a Vercel preview URL
+    if (allowedOrigins.includes(origin) || origin.includes('.vercel.app')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 app.use(express.json());
