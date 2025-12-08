@@ -25,6 +25,8 @@ const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:8080',
   'https://voltaxissfnd.vercel.app',
+  'https://www.voltaxiss.com',
+  'https://voltaxiss.com',
   process.env.CLIENT_URL
 ].filter(Boolean);
 
