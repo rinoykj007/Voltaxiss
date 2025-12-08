@@ -64,33 +64,37 @@ const Services = () => {
 
   // Generate WhatsApp inquiry message with product details
   const generateProductInquiry = (product: Product): string => {
-    const details = [
+    const parts = [
       `Hello Volt Axis Trading Company,`,
       ``,
       `I'm interested in the following product:`,
       ``,
-      `📦 *Product Details:*`,
-      `━━━━━━━━━━━━━━━━━`,
+      `Product Details:`,
       `Name: ${product.name}`,
       `Category: ${product.category}`,
       `Price: ${product.price} SAR / ${product.unit}`,
-      `Manufacturer: ${product.manufacturer || "N/A"}`,
-      `Stock Status: ${
-        product.inStock
-          ? `In Stock (${product.stock} available)`
-          : "Out of Stock"
-      }`,
-      product.description ? `Description: ${product.description}` : "",
-      product.tags && product.tags.length > 0
-        ? `Tags: ${product.tags.join(", ")}`
-        : "",
-      ``,
-      `Could you please provide more information about this product and availability?`,
-      ``,
-      `Thank you!`,
     ];
 
-    return details.filter((line) => line !== "").join("\n");
+    if (product.manufacturer) {
+      parts.push(`Manufacturer: ${product.manufacturer}`);
+    }
+
+    parts.push(`Stock Status: ${product.inStock ? `In Stock (${product.stock} available)` : "Out of Stock"}`);
+
+    if (product.description) {
+      parts.push(`Description: ${product.description}`);
+    }
+
+    if (product.tags && product.tags.length > 0) {
+      parts.push(`Tags: ${product.tags.join(", ")}`);
+    }
+
+    parts.push(``);
+    parts.push(`Could you please provide more information about this product and availability?`);
+    parts.push(``);
+    parts.push(`Thank you!`);
+
+    return parts.join("\n");
   };
 
   const fetchProducts = async () => {
@@ -297,7 +301,11 @@ const Services = () => {
                         {/* WhatsApp Inquiry Button */}
                         <div className="pt-4 border-t border-border/30 mt-auto">
                           <WhatsAppButton
-                            phone={CONTACT_INFO.whatsapp.showroom.number}
+                            phone={
+                              category === "Electrical Components"
+                                ? CONTACT_INFO.whatsapp.trading.formatted
+                                : CONTACT_INFO.whatsapp.showroom.formatted
+                            }
                             message={generateProductInquiry(product)}
                             label="Inquire on WhatsApp"
                             className="w-full justify-center text-sm"

@@ -22,12 +22,13 @@ connectDB();
 // Middleware
 // Allow CORS for production frontend and all Vercel preview URLs
 const allowedOrigins = [
-  'http://localhost:5173',
-  'http://localhost:8080',
+  // Production URLs
   'https://voltaxissfnd.vercel.app',
   'https://www.voltaxiss.com',
   'https://voltaxiss.com',
-  process.env.CLIENT_URL
+  process.env.CLIENT_URL,
+  // Development URLs (only add if in development mode)
+  ...(process.env.NODE_ENV !== 'production' ? ['http://localhost:5173', 'http://localhost:8080'] : [])
 ].filter(Boolean);
 
 app.use(cors({

@@ -23,7 +23,7 @@ export default function WhatsAppButton({
   phone,
   message = "",
   label = "Chat on WhatsApp",
-  className = ""
+  className = "",
 }: WhatsAppButtonProps) {
   const encoded = encodeURIComponent(message);
   // Use wa.me short link (works both desktop & mobile)
