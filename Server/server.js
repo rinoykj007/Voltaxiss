@@ -80,11 +80,15 @@ app.use((req, res) => {
   });
 });
 
-// Start server (only in development, not on Vercel)
+// Start server
 const PORT = process.env.PORT || 5000;
 
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => {
+// Check if running on Vercel (serverless)
+const isVercel = process.env.VERCEL === '1';
+
+if (!isVercel) {
+  // For Render and other traditional hosting
+  app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server is running on port ${PORT}`);
     console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
   });
