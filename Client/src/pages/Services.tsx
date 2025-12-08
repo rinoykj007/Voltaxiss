@@ -35,6 +35,10 @@ interface Product {
   featured: boolean;
   inStock: boolean;
   tags: string[];
+  images?: Array<{
+    url: string;
+    alt?: string;
+  }>;
 }
 
 interface GroupedProducts {
@@ -257,19 +261,46 @@ const Services = () => {
                       key={product._id}
                       className="group hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border-border/50 bg-card overflow-hidden flex flex-col"
                     >
+                      {/* Product Image */}
+                      {product.images && product.images.length > 0 && product.images[0]?.url ? (
+                        <div className="relative w-full h-48 bg-muted overflow-hidden">
+                          <img
+                            src={product.images[0].url}
+                            alt={product.images[0].alt || product.name}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.src = "https://placehold.co/400x400/e5e5e5/666666?text=No+Image";
+                            }}
+                          />
+                          {product.featured && (
+                            <Badge
+                              variant="default"
+                              className="absolute top-2 right-2 text-xs bg-accent text-accent-foreground shadow-md"
+                            >
+                              Featured
+                            </Badge>
+                          )}
+                        </div>
+                      ) : (
+                        <div className="relative w-full h-48 bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center">
+                          <Package className="w-16 h-16 text-muted-foreground/30" />
+                          {product.featured && (
+                            <Badge
+                              variant="default"
+                              className="absolute top-2 right-2 text-xs bg-accent text-accent-foreground shadow-md"
+                            >
+                              Featured
+                            </Badge>
+                          )}
+                        </div>
+                      )}
+
                       <CardHeader className="space-y-3 pb-4 flex-shrink-0">
                         <div className="flex items-start justify-between gap-2">
                           <CardTitle className="text-base font-bold line-clamp-2 group-hover:text-primary transition-colors">
                             {product.name}
                           </CardTitle>
-                          {product.featured && (
-                            <Badge
-                              variant="default"
-                              className="shrink-0 text-xs bg-accent text-accent-foreground"
-                            >
-                              Featured
-                            </Badge>
-                          )}
                         </div>
                         <CardDescription className="line-clamp-2 text-sm">
                           {product.description}

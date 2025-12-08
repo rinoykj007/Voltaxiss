@@ -28,7 +28,7 @@ import {
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Plus, Pencil, Trash2, Search } from 'lucide-react';
+import { Plus, Pencil, Trash2, Search, Package } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface Product {
@@ -42,6 +42,10 @@ interface Product {
   manufacturer?: string;
   featured: boolean;
   inStock: boolean;
+  images?: Array<{
+    url: string;
+    alt?: string;
+  }>;
 }
 
 const categories = [
@@ -72,6 +76,8 @@ const Products = () => {
     manufacturer: '',
     featured: false,
     inStock: true,
+    imageUrl: '',
+    imageAlt: '',
   });
   const { toast } = useToast();
 
@@ -108,6 +114,8 @@ const Products = () => {
         manufacturer: product.manufacturer || '',
         featured: product.featured,
         inStock: product.inStock,
+        imageUrl: product.images?.[0]?.url || '',
+        imageAlt: product.images?.[0]?.alt || '',
       });
     } else {
       setEditingProduct(null);
@@ -121,6 +129,8 @@ const Products = () => {
         manufacturer: '',
         featured: false,
         inStock: true,
+        imageUrl: '',
+        imageAlt: '',
       });
     }
     setIsDialogOpen(true);
@@ -134,14 +144,21 @@ const Products = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      // Prepare data with images array
+      const { imageUrl, imageAlt, ...restData } = formData;
+      const submitData = {
+        ...restData,
+        images: imageUrl ? [{ url: imageUrl, alt: imageAlt || restData.name }] : []
+      };
+
       if (editingProduct) {
-        await productAPI.update(editingProduct._id, formData);
+        await productAPI.update(editingProduct._id, submitData);
         toast({
           title: 'Success',
           description: 'Product updated successfully',
         });
       } else {
-        await productAPI.create(formData);
+        await productAPI.create(submitData);
         toast({
           title: 'Success',
           description: 'Product created successfully',
@@ -218,6 +235,7 @@ const Products = () => {
             <Table>
               <TableHeader>
                 <TableRow>
+                  <TableHead>Image</TableHead>
                   <TableHead>Name</TableHead>
                   <TableHead>Category</TableHead>
                   <TableHead>Price</TableHead>
@@ -229,13 +247,32 @@ const Products = () => {
               <TableBody>
                 {filteredProducts.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={6} className="text-center py-8">
+                    <TableCell colSpan={7} className="text-center py-8">
                       No products found
                     </TableCell>
                   </TableRow>
                 ) : (
                   filteredProducts.map((product) => (
                     <TableRow key={product._id}>
+                      <TableCell>
+                        <div className="w-12 h-12 rounded overflow-hidden bg-muted">
+                          {product.images && product.images.length > 0 && product.images[0]?.url ? (
+                            <img
+                              src={product.images[0].url}
+                              alt={product.images[0].alt || product.name}
+                              className="w-full h-full object-cover"
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                target.style.display = 'none';
+                              }}
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center">
+                              <Package className="w-6 h-6 text-muted-foreground" />
+                            </div>
+                          )}
+                        </div>
+                      </TableCell>
                       <TableCell className="font-medium">
                         {product.name}
                       </TableCell>
@@ -319,6 +356,53 @@ const Products = () => {
                   required
                 />
               </div>
+
+              <div className="grid gap-2">
+                <Label htmlFor="imageUrl">Image URL</Label>
+                <Input
+                  id="imageUrl"
+                  type="url"
+                  placeholder="https://example.com/image.jpg"
+                  value={formData.imageUrl}
+                  onChange={(e) =>
+                    setFormData({ ...formData, imageUrl: e.target.value })
+                  }
+                />
+                <p className="text-xs text-muted-foreground">
+                  Paste the direct URL of the product image (e.g., from Imgur, Cloudinary)
+                </p>
+              </div>
+
+              {formData.imageUrl && (
+                <div className="grid gap-2">
+                  <Label htmlFor="imageAlt">Image Description (Alt Text)</Label>
+                  <Input
+                    id="imageAlt"
+                    placeholder="Description of the image for accessibility"
+                    value={formData.imageAlt}
+                    onChange={(e) =>
+                      setFormData({ ...formData, imageAlt: e.target.value })
+                    }
+                  />
+                </div>
+              )}
+
+              {formData.imageUrl && (
+                <div className="grid gap-2">
+                  <Label>Image Preview</Label>
+                  <div className="relative w-full h-48 bg-muted rounded-lg overflow-hidden border">
+                    <img
+                      src={formData.imageUrl}
+                      alt="Preview"
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = "https://placehold.co/400x400/e5e5e5/666666?text=Invalid+URL";
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="grid gap-2">
