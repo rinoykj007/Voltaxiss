@@ -9,49 +9,78 @@ import {
   CarouselApi,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-// Replace these placeholder URLs with your downloaded HD images
-// Recommended sources: Unsplash, Pexels, Pixabay (all free & HD)
-const businessTeam =
-  "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80"; // Team collaboration
-const techServices =
-  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80"; // Technology/Analytics
-const consulting =
-  "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1920&q=80"; // Business meeting
-const corporateOffice =
-  "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80"; // Modern office
+// High-quality images for each service category
+const safetyImage =
+  "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=1920&q=80"; // Industrial safety helmets and equipment
+const furnitureImage =
+  "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1920&q=80"; // Office furniture and workspace setup
+const pipesImage =
+  "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1920&q=80"; // Industrial pipes, valves, and plumbing
+const weldingImage =
+  "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920&q=80"; // Industrial welding equipment, tools and materials
+const toolsImage =
+  "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=1920&q=80"; // Professional tools and equipment
+const officeSuppliesImage =
+  "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&q=80"; // Office desk supplies and stationery
+const equipmentRentalImage =
+  "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80"; // Construction equipment and heavy machinery
 
 const carouselSlides = [
   {
     id: 1,
-    category: "OUR SERVICES",
-    title: "Building Stronger Foundations for the Kingdom's Growth",
-    buttonText: "Explore Services",
+    category: "SAFETY SOLUTIONS",
+    title: "Comprehensive Safety Solutions for Your Workplace",
+    buttonText: "Explore Solutions",
     buttonLink: "/services",
-    image: techServices,
+    image: safetyImage,
   },
   {
     id: 2,
-    category: "IT CONSULTING",
-    title: "Strategic IT Consulting to Drive Your Business Forward",
-    buttonText: "Get Started",
-    buttonLink: "/contact",
-    image: consulting,
+    category: "FURNITURE SOLUTIONS",
+    title: "Quality Furniture Solutions for Modern Workspaces",
+    buttonText: "View Catalog",
+    buttonLink: "/services",
+    image: furnitureImage,
   },
   {
     id: 3,
-    category: "COMPLETE PROJECT SOLUTIONS",
-    title: "Reliable Support and Supplies to Ensure Project Success",
+    category: "PIPES & FITTINGS",
+    title: "Reliable Pipes & Fittings for Every Industrial Need",
     buttonText: "Learn More",
     buttonLink: "/services",
-    image: businessTeam,
+    image: pipesImage,
   },
   {
     id: 4,
-    category: "INDUSTRIAL CONTROL & AUTOMATION",
-    title: "Advanced Control Solutions to Optimize Your Operations",
-    buttonText: "Our Story",
-    buttonLink: "/about",
-    image: corporateOffice,
+    category: "WELDING & FASTENING",
+    title: "Professional Welding & Fastening Equipment and Supplies",
+    buttonText: "Discover More",
+    buttonLink: "/services",
+    image: weldingImage,
+  },
+  {
+    id: 5,
+    category: "TOOLS & EQUIPMENT",
+    title: "Premium Tools & Equipment for Professional Results",
+    buttonText: "Shop Now",
+    buttonLink: "/services",
+    image: toolsImage,
+  },
+  {
+    id: 6,
+    category: "OFFICE & PANTRY SUPPLIES",
+    title: "Complete Office & Pantry Supplies for Your Business",
+    buttonText: "Browse Supplies",
+    buttonLink: "/services",
+    image: officeSuppliesImage,
+  },
+  {
+    id: 7,
+    category: "EQUIPMENT RENTALS",
+    title: "Flexible Equipment Rental Solutions for Your Projects",
+    buttonText: "View Rentals",
+    buttonLink: "/services",
+    image: equipmentRentalImage,
   },
 ];
 
