@@ -69,7 +69,7 @@ const Services = () => {
   // Generate WhatsApp inquiry message with product details
   const generateProductInquiry = (product: Product): string => {
     const parts = [
-      `Hello Volt Axis Trading Company,`,
+      `Hello Volt Axis Company,`,
       ``,
       `I'm interested in the following product:`,
       ``,
@@ -83,7 +83,13 @@ const Services = () => {
       parts.push(`Manufacturer: ${product.manufacturer}`);
     }
 
-    parts.push(`Stock Status: ${product.inStock ? `In Stock (${product.stock} available)` : "Out of Stock"}`);
+    parts.push(
+      `Stock Status: ${
+        product.inStock
+          ? `In Stock (${product.stock} available)`
+          : "Out of Stock"
+      }`
+    );
 
     if (product.description) {
       parts.push(`Description: ${product.description}`);
@@ -94,7 +100,9 @@ const Services = () => {
     }
 
     parts.push(``);
-    parts.push(`Could you please provide more information about this product and availability?`);
+    parts.push(
+      `Could you please provide more information about this product and availability?`
+    );
     parts.push(``);
     parts.push(`Thank you!`);
 
@@ -262,7 +270,9 @@ const Services = () => {
                       className="group hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border-border/50 bg-card overflow-hidden flex flex-col"
                     >
                       {/* Product Image */}
-                      {product.images && product.images.length > 0 && product.images[0]?.url ? (
+                      {product.images &&
+                      product.images.length > 0 &&
+                      product.images[0]?.url ? (
                         <div className="relative w-full h-48 bg-muted overflow-hidden">
                           <img
                             src={product.images[0].url}
@@ -270,7 +280,8 @@ const Services = () => {
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
-                              target.src = "https://placehold.co/400x400/e5e5e5/666666?text=No+Image";
+                              target.src =
+                                "https://placehold.co/400x400/e5e5e5/666666?text=No+Image";
                             }}
                           />
                           {product.featured && (

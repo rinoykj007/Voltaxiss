@@ -78,9 +78,9 @@ const About = () => {
                 Saudi Arabia
               </h1>
               <p className="text-lg text-primary-foreground/90 leading-relaxed">
-                Since our establishment, Volt Axis Trading Est. has been a
-                trusted partner for industrial and construction projects across
-                the Kingdom. We specialize in providing comprehensive supply
+                Since our establishment, Volt Axis Company. has been a trusted
+                partner for industrial and construction projects across the
+                Kingdom. We specialize in providing comprehensive supply
                 solutions, safety equipment, and skilled manpower to support
                 your vision.
               </p>
@@ -89,7 +89,7 @@ const About = () => {
                   variant="default"
                   size="lg"
                   className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90"
-                  onClick={() => navigate('/services')}
+                  onClick={() => navigate("/services")}
                 >
                   Our Services
                 </Button>
@@ -97,7 +97,7 @@ const About = () => {
                   variant="outline"
                   size="lg"
                   className="rounded-full border-2 border-primary-foreground/30 bg-transparent hover:bg-white/10 text-primary-foreground"
-                  onClick={() => navigate('/contact')}
+                  onClick={() => navigate("/contact")}
                 >
                   Contact Us
                 </Button>
@@ -318,7 +318,7 @@ const About = () => {
                 variant="default"
                 size="lg"
                 className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
-                onClick={() => navigate('/contact')}
+                onClick={() => navigate("/contact")}
               >
                 Join Our Team
               </Button>
@@ -342,7 +342,7 @@ const About = () => {
               variant="default"
               size="lg"
               className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90"
-              onClick={() => navigate('/contact')}
+              onClick={() => navigate("/contact")}
             >
               Request a Quote
             </Button>
@@ -350,7 +350,7 @@ const About = () => {
               variant="outline"
               size="lg"
               className="rounded-full border-2 border-primary-foreground/30 bg-transparent hover:bg-white/10 text-primary-foreground"
-              onClick={() => navigate('/services')}
+              onClick={() => navigate("/services")}
             >
               View Our Catalog
             </Button>

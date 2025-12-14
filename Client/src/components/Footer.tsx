@@ -14,13 +14,13 @@ const Footer = () => {
               <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
                 <Zap className="w-6 h-6 text-primary-foreground" />
               </div>
-              <span className="text-2xl font-bold">Volt Axis Trading Company</span>
+              <span className="text-2xl font-bold">Volt Axis Company</span>
             </div>
             <p className="text-sm text-background/80 mb-6 leading-relaxed max-w-md">
-              Volt Axis Trading Company stands as more than a supplier - we are your long-term
-              partner in building stronger foundations, shaping the future of
-              industrial and construction excellence in the Kingdom of Saudi
-              Arabia.
+              Volt Axis Company stands as more than a supplier - we are your
+              long-term partner in building stronger foundations, shaping the
+              future of industrial and construction excellence in the Kingdom of
+              Saudi Arabia.
             </p>
             <div className="flex gap-3">
               <a
@@ -187,11 +187,11 @@ const Footer = () => {
               <li className="flex gap-2">
                 <MapPin className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                 <span className="leading-relaxed">
-                  Office No. 2, Floor 1<br />
-                  Makkah Road, Kilometer 5<br />
-                  Ghulail District, Jubail
+                  Al Madina Al Munawara Branch Road <br />
+                  Al Aziziyah Dist, Jiddah
                   <br />
-                  Saudi Arabia
+                  Kingdom Of Saudi Arabia
+                  <br />
                 </span>
               </li>
               <li className="flex items-start gap-2">
@@ -245,7 +245,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-background/20 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-background/70">
-            <p>© 2024 Volt Axis Trading Company. All Rights Reserved</p>
+            <p>© 2024 Volt Axis Company. All Rights Reserved</p>
             <div className="flex gap-6">
               <a href="#" className="hover:text-primary transition-colors">
                 Privacy Policy

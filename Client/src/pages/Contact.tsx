@@ -7,13 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { CONTACT_INFO } from "@/constants/contact";
 import { contactAPI } from "@/services/api";
-import {
-  MapPin,
-  Phone,
-  Send,
-  CheckCircle2,
-  AlertCircle,
-} from "lucide-react";
+import { MapPin, Phone, Send, CheckCircle2, AlertCircle } from "lucide-react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -21,9 +15,12 @@ import L from "leaflet";
 // Fix for default marker icon
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
-  iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
-  shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+  iconRetinaUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
+  iconUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
 });
 
 const Contact = () => {
@@ -72,7 +69,10 @@ const Contact = () => {
       }, 3000);
     } catch (err: any) {
       setIsSubmitting(false);
-      setError(err.response?.data?.message || "Failed to send message. Please try again.");
+      setError(
+        err.response?.data?.message ||
+          "Failed to send message. Please try again."
+      );
 
       // Clear error after 5 seconds
       setTimeout(() => {
@@ -109,7 +109,8 @@ const Contact = () => {
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold mb-2">Send Us a Message</h2>
                   <p className="text-muted-foreground text-sm mb-6">
-                    Fill out the form below and we'll get back to you as soon as possible.
+                    Fill out the form below and we'll get back to you as soon as
+                    possible.
                   </p>
 
                   {isSubmitted ? (
@@ -137,7 +138,10 @@ const Contact = () => {
                       {/* Name, Email & Phone in one row */}
                       <div className="grid md:grid-cols-3 gap-4">
                         <div>
-                          <label htmlFor="name" className="block text-sm font-semibold mb-2">
+                          <label
+                            htmlFor="name"
+                            className="block text-sm font-semibold mb-2"
+                          >
                             Full Name *
                           </label>
                           <Input
@@ -152,7 +156,10 @@ const Contact = () => {
                           />
                         </div>
                         <div>
-                          <label htmlFor="email" className="block text-sm font-semibold mb-2">
+                          <label
+                            htmlFor="email"
+                            className="block text-sm font-semibold mb-2"
+                          >
                             Email Address *
                           </label>
                           <Input
@@ -167,7 +174,10 @@ const Contact = () => {
                           />
                         </div>
                         <div>
-                          <label htmlFor="phone" className="block text-sm font-semibold mb-2">
+                          <label
+                            htmlFor="phone"
+                            className="block text-sm font-semibold mb-2"
+                          >
                             Phone Number
                           </label>
                           <Input
@@ -185,7 +195,10 @@ const Contact = () => {
                       {/* Department & Subject in one row */}
                       <div className="grid md:grid-cols-2 gap-4">
                         <div>
-                          <label htmlFor="department" className="block text-sm font-semibold mb-2">
+                          <label
+                            htmlFor="department"
+                            className="block text-sm font-semibold mb-2"
+                          >
                             Department *
                           </label>
                           <select
@@ -202,7 +215,10 @@ const Contact = () => {
                           </select>
                         </div>
                         <div>
-                          <label htmlFor="subject" className="block text-sm font-semibold mb-2">
+                          <label
+                            htmlFor="subject"
+                            className="block text-sm font-semibold mb-2"
+                          >
                             Subject *
                           </label>
                           <Input
@@ -220,7 +236,10 @@ const Contact = () => {
 
                       {/* Message */}
                       <div>
-                        <label htmlFor="message" className="block text-sm font-semibold mb-2">
+                        <label
+                          htmlFor="message"
+                          className="block text-sm font-semibold mb-2"
+                        >
                           Message *
                         </label>
                         <Textarea
@@ -270,12 +289,15 @@ const Contact = () => {
                       <MapPin className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-base mb-1.5">Office Location</h3>
+                      <h3 className="font-bold text-base mb-1.5">
+                        Office Location
+                      </h3>
                       <p className="text-muted-foreground text-xs leading-relaxed">
-                        Office No. 2, Floor 1<br />
-                        Makkah Road, Kilometer 5<br />
-                        Ghulail District, Jubail<br />
-                        Saudi Arabia
+                        Al Madina Al Munawara Branch Road
+                        <br />
+                        Al Aziziyah Dist, Jiddah
+                        <br />
+                        Kingdom Of Saudi Arabia
                       </p>
                     </div>
                   </div>
@@ -318,7 +340,7 @@ const Contact = () => {
               <Card className="shadow-xl border-border/50 overflow-hidden flex-1 relative z-0">
                 <div className="w-full h-full min-h-[200px]">
                   <MapContainer
-                    center={[27.0174, 49.5858]} // Jubail, Saudi Arabia coordinates
+                    center={[21.5433, 39.1728]} // Jeddah, Saudi Arabia coordinates
                     zoom={13}
                     scrollWheelZoom={false}
                     style={{ height: "100%", width: "100%", zIndex: 0 }}
@@ -328,14 +350,16 @@ const Contact = () => {
                       attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-                    <Marker position={[27.0174, 49.5858]}>
+                    <Marker position={[21.5433, 39.1728]}>
                       <Popup>
                         <div className="text-sm">
-                          <strong>Volt Axis Trading Company</strong>
+                          <strong>Volt Axis Company</strong>
                           <br />
-                          Ghulail District, Jubail
+                          Al Madina Al Munawara Branch Road
                           <br />
-                          Saudi Arabia
+                          Al Aziziyah Dist, Jiddah
+                          <br />
+                          Kingdom Of Saudi Arabia
                         </div>
                       </Popup>
                     </Marker>

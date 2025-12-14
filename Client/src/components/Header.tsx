@@ -16,7 +16,7 @@ const Header = () => {
           <Link to="/" className="flex items-center gap-3">
             <img
               src={logoImage}
-              alt="Volt Axis Trading Company"
+              alt="Volt Axis Company"
               className="h-10 w-auto object-contain"
               onError={(e) => {
                 // Fallback to icon if logo image not found
